@@ -9,7 +9,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddScoped<INASAOpenAPIRepository, NASAOpenAPIRepository>();
-builder.Services.AddScoped<INASAOpenAPIService, NASAOpenAPIService>();
+builder.Services.AddScoped<INASAOpenAPIService, NASAOpenAPIService>(provider => new NASAOpenAPIService(provider.GetRequiredService<INASAOpenAPIRepository>()));
 
 var app = builder.Build();
 
