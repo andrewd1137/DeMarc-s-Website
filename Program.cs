@@ -1,10 +1,15 @@
 using DeMarc_s_Website.Components;
+using Repositories;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddScoped<INASAOpenAPIRepository, NASAOpenAPIRepository>();
+builder.Services.AddScoped<INASAOpenAPIService, NASAOpenAPIService>();
 
 var app = builder.Build();
 

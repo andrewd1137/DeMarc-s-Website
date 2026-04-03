@@ -1,7 +1,25 @@
 ﻿@page "/"
+@using Services
+@using ViewModels
 
-<PageTitle>Home</PageTitle>
+<PageTitle>DeMarks</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Andrew DeMarco</h1>
 
-Welcome to your new app.
+<img src="@HomePageViewModel.APOD.HDurl"/>
+
+@code {
+    [Inject]
+    public INASAOpenAPIService NASAOpenAPIService { get; set; }
+
+    private HomePageViewModel HomePageViewModel;
+
+    protected override async Task OnInitializedAsync() 
+    {
+        this.HomePageViewModel = new HomePageViewModel(this.NASAOpenAPIService);
+        await this.HomePageViewModel.LoadAsync();
+    }
+
+}
+
+
