@@ -1,25 +1,27 @@
 ﻿@page "/"
 @using Services
+@using System.Threading.Tasks
 @using ViewModels
+@inject HomePageViewModel HomePageViewModel
 
 <PageTitle>DeMarks</PageTitle>
 
 <h1>Andrew DeMarco</h1>
 
-<img src="@HomePageViewModel.APOD.HDurl"/>
+@if (HomePageViewModel.IsLoading)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <img src="@HomePageViewModel.APOD.HDurl" alt="@HomePageViewModel.APOD.Title" style="max-width: 100%; height: auto;" />
+}
 
 @code {
-    [Inject]
-    public INASAOpenAPIService NASAOpenAPIService { get; set; }
-
-    private HomePageViewModel HomePageViewModel;
-
     protected override async Task OnInitializedAsync() 
     {
-        this.HomePageViewModel = new HomePageViewModel(this.NASAOpenAPIService);
         await this.HomePageViewModel.LoadAsync();
     }
-
 }
 
 

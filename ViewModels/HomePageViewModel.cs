@@ -5,18 +5,22 @@ namespace ViewModels
 {
     public class HomePageViewModel
     {
-        protected INASAOpenAPIService NASAOpenAPIService { get; set; }
+        private readonly INASAOpenAPIService _NASAOpenAPIService;
 
-        public APOD APOD { get; set; }
+        public bool IsLoading { get; set; } = true;
+
+        public APOD APOD { get; set; } = new APOD();
 
         public HomePageViewModel(INASAOpenAPIService nasaOpenAPIService)
         {
-            this.NASAOpenAPIService = nasaOpenAPIService;
+            this._NASAOpenAPIService = nasaOpenAPIService;
         }
 
         public async Task LoadAsync()
         {
-            this.APOD = await this.NASAOpenAPIService.GetARandomAPODAsync();
+            this.IsLoading = true;
+            this.APOD = await this._NASAOpenAPIService.GetARandomAPODAsync();
+            this.IsLoading = false;
         }
     }
 }

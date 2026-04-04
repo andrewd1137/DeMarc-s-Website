@@ -5,21 +5,21 @@ namespace Services
 {
     public class NASAOpenAPIService : INASAOpenAPIService
     {
-        public INASAOpenAPIRepository NASAOpenAPIRepository;
+        private readonly INASAOpenAPIRepository _NASAOpenAPIRepository;
 
         public NASAOpenAPIService(INASAOpenAPIRepository nasaOpenAPIRepository)
         {
-            this.NASAOpenAPIRepository = nasaOpenAPIRepository;
+            this._NASAOpenAPIRepository = nasaOpenAPIRepository;
         }
 
         public async Task<APOD> GetAPODAsync()
         {
-            return await this.NASAOpenAPIRepository.GetAPODAsync();
+            return await this._NASAOpenAPIRepository.GetAPODAsync();
         }
 
         public async Task<APOD> GetARandomAPODAsync()
         {
-            return await this.NASAOpenAPIRepository.GetAPODAsync(true);
+            return await this._NASAOpenAPIRepository.GetAPODAsync(true);
         }
     }
 }
