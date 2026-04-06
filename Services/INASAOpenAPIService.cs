@@ -6,5 +6,6 @@ namespace Services
     {
         Task<APOD> GetAPODAsync();
         Task<APOD> GetARandomAPODAsync();
+        Task<Root> GETExpedition40SpaceMissions();
     }
 }

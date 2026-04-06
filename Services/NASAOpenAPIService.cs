@@ -21,5 +21,10 @@ namespace Services
         {
             return await this._NASAOpenAPIRepository.GetAPODAsync(true);
         }
+
+        public async Task<Root> GETExpedition40SpaceMissions()
+        {
+            return await this._NASAOpenAPIRepository.GETExpedition40SpaceMissions();
+        }
     }
 }

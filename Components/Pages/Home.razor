@@ -14,14 +14,21 @@
 }
 else
 {
-    <p>@HomePageViewModel.APOD.Explanation</p>
-    <img src="@HomePageViewModel.APOD.HDurl" alt="@HomePageViewModel.APOD.Title" style="max-width: 100%; height: 90vh;" />
+    <img src="@HomePageViewModel.Expedition40SpaceMissions.Collection.Items[0].Href" alt="This is an image from NASA's image API of an Earth Observation from Space on Expedition 40" style="max-width: 100%; height: 90vh;" />
 }
 
 @code {
     protected override async Task OnInitializedAsync() 
     {
         await this.HomePageViewModel.LoadAsync();
+    }
+
+    public string DisplayRandomExpidition40Image()
+    {
+        var random = new Random();
+        var randomIndex = random.Next(0, this.HomePageViewModel.Expedition40SpaceMissions.Collection.Items.Count);
+        var randomImageUrl = this.HomePageViewModel.Expedition40SpaceMissions.Collection.Items[randomIndex].Href;
+        return randomImageUrl;
     }
 }
 
