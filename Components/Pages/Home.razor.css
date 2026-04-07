@@ -1,0 +1,13 @@
+.home-container {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.title-and-description {
+    width: 100%;
+    padding-left: 8px;
+    margin: 0px;
+    background-color: white;
+    color: black;
+}
